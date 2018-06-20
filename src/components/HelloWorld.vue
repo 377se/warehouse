@@ -6,7 +6,7 @@
       check out the
       <a href="https://cli.vuejs.org" target="_blank">vue-cli documentation</a>.
     </p>
-    <h3>Installed CLI Plugins</h3>
+    <h3>Installed CLI Plugins KISS</h3>
     <ul>
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa" target="_blank">pwa</a></li>
     </ul>
@@ -25,14 +25,38 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
+    <ul v-if="posts && posts.length">
+    <li v-for='post in posts' :key='post.id'>
+      <p><strong>{{post.id}}</strong></p>
+      <p>{{post.joke}}</p>
+    </li>
+  </ul>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      posts: [],
+      loading: true
+    }
+  },
+  created () {
+    axios
+      .get('http://api.icndb.com/jokes/random/10')
+      .then(response => {
+        this.loading = false;
+        this.posts = response.data.value
+      }, (error)  =>  {
+        this.loading = false;
+      })
   }
 }
 </script>
