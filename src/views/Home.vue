@@ -1,5 +1,7 @@
 <template>
-
+  <div class="test">
+      <h1>Mats luktar KISS</h1>
+  </div>
 </template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
