@@ -5,13 +5,18 @@ import store from './store'
 import './registerServiceWorker'
 //import { MdButton, MdContent, MdTabs } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 import {config} from './helpers/firebaseConfig'
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.min.css'
+import 'vue-material/dist/theme/default.css'
 
 
 Vue.config.productionTip = false
 
 Vue.component('HelloWorld', { /* ... */ })
+Vue.use(VueMaterial)
 
 new Vue({
   router,
